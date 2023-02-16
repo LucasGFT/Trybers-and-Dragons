@@ -1,5 +1,4 @@
 abstract class Race {
-  private static count = 0;
   private _name: string;
   private _dexterity: number;
   abstract get maxLifePoints(): number;
@@ -18,11 +17,7 @@ abstract class Race {
     return this._dexterity;
   }
 
-  static createdRacesInstances(numInstancia: number): number {
-    if (Race.count > numInstancia) {
-      Race.count += 1;
-      return this.count;
-    }
+  static createdRacesInstances(): number {
     throw new Error('Not implemented');
   }
 }
