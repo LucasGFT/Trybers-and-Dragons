@@ -4,4 +4,5 @@ interface SimpleFighter extends Fight<SimpleFighter> {
   lifePoints: number;
   strength: number;
 }
+
 export default SimpleFighter;
