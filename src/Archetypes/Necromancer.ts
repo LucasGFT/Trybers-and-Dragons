@@ -1,7 +1,8 @@
+import { EnergyType } from '../Energy';
 import Archetype from './Archetype';
 
 class Necromancer extends Archetype {
-  private _energyType: 'mana' | 'stamina';
+  private _energyType: EnergyType;
   private static _intanceCount = 0;
 
   constructor(name: string) {
@@ -10,7 +11,7 @@ class Necromancer extends Archetype {
     Necromancer.addInstance();
   }
 
-  get energyType(): 'mana' | 'stamina' {
+  get energyType(): EnergyType {
     return this._energyType;
   }
 

@@ -1,7 +1,8 @@
+import { EnergyType } from '../Energy';
 import Archetype from './Archetype';
 
 class Ranger extends Archetype {
-  private _energyType: 'mana' | 'stamina';
+  private _energyType: EnergyType;
   private static _intanceCount = 0;
 
   constructor(name: string) {
@@ -10,7 +11,7 @@ class Ranger extends Archetype {
     Ranger.addInstance();
   }
 
-  get energyType(): 'mana' | 'stamina' {
+  get energyType(): EnergyType {
     return this._energyType;
   }
 

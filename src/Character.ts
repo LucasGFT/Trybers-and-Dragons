@@ -19,14 +19,14 @@ class Character implements Fighter {
   constructor(name: string) {
     this._name = name;
     this._dexterity = getRandomInt(1, 10);
-    this._race = new Elf(name, this.dexterity);
+    this._race = new Elf(name, this._dexterity);
     this._archetype = new Mage(name);
-    this._maxLifePoints = this.race.maxLifePoints / 2;
-    this._lifePoints = this.race.maxLifePoints;
+    this._maxLifePoints = this._race.maxLifePoints / 2;
+    this._lifePoints = this._maxLifePoints;
     this._strength = getRandomInt(1, 10);
     this._defense = getRandomInt(1, 10);
     this._energy = {
-      type_: this.archetype.energyType,
+      type_: this._archetype.energyType,
       amount: getRandomInt(1, 10),
     };
   }
@@ -81,7 +81,7 @@ class Character implements Fighter {
     return this.lifePoints;
   }
 
-  attack(enemy: SimpleFighter): void {
+  attack(enemy: Fighter | SimpleFighter): void {
     enemy.receiveDamage(this._strength);
   }
 
@@ -91,13 +91,14 @@ class Character implements Fighter {
     this._dexterity += getRandomInt(1, 10);
     this._defense += getRandomInt(1, 10);
     this._energy.amount = 10;
-    if (this.race.maxLifePoints < this.maxLifePoints) {
+    if (this.race.maxLifePoints < this._maxLifePoints) {
       this._maxLifePoints = this.race.maxLifePoints;
     }
-    this._lifePoints += getRandomInt(1, 10);
-    if (this.race.maxLifePoints < this.lifePoints) {
-      this._lifePoints = this.race.maxLifePoints;
-    }
+    this._lifePoints = this._maxLifePoints;
+  }
+
+  special(enemy: Fighter): void {
+    enemy.receiveDamage(this.race.maxLifePoints);
   }
 }
 
